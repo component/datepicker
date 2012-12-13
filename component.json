@@ -1,0 +1,21 @@
+{
+  "name": "datepicker",
+  "repo": "component/datepicker",
+  "description": "Datepicker ui component built on component/calendar",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/calendar": "*",
+    "component/popover": "*",
+    "component/aurora": "*",
+    "component/event": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "datepicker.css"
+  ]
+}

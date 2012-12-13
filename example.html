@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Datepicker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="build/build.css">
+    <script src="build/build.js"></script>
+    <style>
+      body {
+        padding: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" name="date" placeholder="Choose a date">
+    
+    <script>
+      var picker = require('datepicker');
+      var el = document.querySelector('[name=date]');
+      picker(el);
+    </script>
+  </body>
+</html>
