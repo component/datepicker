@@ -44,7 +44,7 @@ Datepicker.prototype.onclick = function(e){
  */
 
 Datepicker.prototype.onchange = function(date){
-  el.value = date.getFullYear()
+  this.el.value = date.getFullYear()
     + '/'
     + date.getMonth()
     + '/'
