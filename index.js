@@ -33,6 +33,8 @@ function Datepicker(el) {
  */
 
 Datepicker.prototype.onclick = function(e){
+  if (this.popover)
+    return;
   this.cal.on('change', this.onchange.bind(this));
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';
@@ -50,6 +52,7 @@ Datepicker.prototype.onchange = function(date){
     + '/'
     + date.getDate();
 
-  this.popover.hide();
+  this.popover.remove();
+  delete this.popover;
 };
 
