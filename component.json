@@ -2,7 +2,7 @@
   "name": "datepicker",
   "repo": "component/datepicker",
   "description": "Datepicker ui component built on component/calendar",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "keywords": ["date", "picker", "calendar"],
   "dependencies": {
     "component/calendar": "*",

@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Datepicker</title>
-    <link rel="stylesheet" href="build/build.css">
-  </head>
-  <body>
-    <script src="build/build.js">
-    <script>
-      var datepicker = require('datepicker');
-    </script>
-  </body>
-</html>
+
+1.0.0 / 2013-05-17 
+==================
+
+  * fix double-display on subsequent clicks when a picker is already displayed 
