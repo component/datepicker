@@ -35,7 +35,7 @@ function Datepicker(el) {
 Datepicker.prototype.onclick = function(e){
   if (this.popover)
     return;
-  this.cal.on('change', this.onchange.bind(this));
+  this.cal.once('change', this.onchange.bind(this));
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';
   this.popover.show(this.el);
