@@ -25,7 +25,10 @@ function Datepicker(el) {
   this.cal = new Calendar;
   this.cal.el.addClass('datepicker-calendar');
   event.bind(el, 'click', this.onclick.bind(this));
-  event.bind(el, 'blur', this.dispose.bind(this));
+  var dispose = this.dispose.bind(this);
+  event.bind(el, 'blur', function() {
+    setTimeout(dispose, 10);
+  });
 }
 
 /**
@@ -55,6 +58,7 @@ Datepicker.prototype.onchange = function(date){
 };
 
 Datepicker.prototype.dispose = function(){
+  if (!this.popover) return;
   this.popover.remove();
   this.popover = null;
 };
