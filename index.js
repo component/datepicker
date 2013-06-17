@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -26,6 +25,7 @@ function Datepicker(el) {
   this.cal = new Calendar;
   this.cal.el.addClass('datepicker-calendar');
   event.bind(el, 'click', this.onclick.bind(this));
+  event.bind(el, 'blur', this.dispose.bind(this));
 }
 
 /**
@@ -51,6 +51,10 @@ Datepicker.prototype.onchange = function(date){
     + '/'
     + date.getDate();
 
+  this.dispose();
+};
+
+Datepicker.prototype.dispose = function(){
   this.popover.remove();
   this.popover = null;
 };
