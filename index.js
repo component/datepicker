@@ -24,8 +24,10 @@ function Datepicker(el) {
   this.el = el;
   this.cal = new Calendar;
   this.cal.el.addClass('datepicker-calendar');
-  event.bind(el, 'click', this.onclick.bind(this));
+  var onclick = this.onclick.bind(this);
   var dispose = this.dispose.bind(this);
+  event.bind(el, 'click', onclick);
+  event.bind(el, 'focus', onclick);
   event.bind(el, 'blur', function() {
     setTimeout(dispose, 10);
   });
