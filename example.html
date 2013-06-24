@@ -12,12 +12,18 @@
     </style>
   </head>
   <body>
+    Y/m/d:
     <input type="text" name="date" placeholder="Choose a date">
+    <br />
+    d.m.Y:
+    <input type="text" name="date2" placeholder="Choose a date">
     
     <script>
       var picker = require('datepicker');
       var el = document.querySelector('[name=date]');
       picker(el);
+      el = document.querySelector('[name=date2]');
+      picker(el, '%d.%m.%Y');
     </script>
   </body>
 </html>

@@ -8,7 +8,8 @@
     "component/calendar": "*",
     "component/popover": "*",
     "component/aurora": "*",
-    "component/event": "*"
+    "component/event": "*",
+    "samsonjs/strftime": "v0.6.1"
   },
   "development": {},
   "license": "MIT",

@@ -6,6 +6,7 @@
 var Calendar = require('calendar')
   , Popover = require('popover')
   , event = require('event')
+  , strftime = require('strftime')
 
 /**
  * Expose `Datepicker`.
@@ -20,9 +21,12 @@ module.exports = Datepicker;
  * @api public
  */
 
-function Datepicker(el) {
-  if (!(this instanceof Datepicker)) return new Datepicker(el);
+function Datepicker(el, format) {
+  if (!(this instanceof Datepicker)) return new Datepicker(el, format);
   this.el = el;
+  if (!format)
+    format = '%Y/%m/%d';
+  this.format = format;
   this.cal = new Calendar;
   this.cal.el.addClass('datepicker-calendar');
   event.bind(el, 'click', this.onclick.bind(this));
@@ -45,11 +49,7 @@ Datepicker.prototype.onclick = function(e){
  */
 
 Datepicker.prototype.onchange = function(date){
-  this.el.value = date.getFullYear()
-    + '/'
-    + date.getMonth()
-    + '/'
-    + date.getDate();
+  this.el.value = strftime(this.format, date);
 
   this.popover.remove();
   this.popover = null;
