@@ -2,13 +2,16 @@
   "name": "datepicker",
   "repo": "component/datepicker",
   "description": "Datepicker ui component built on component/calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": ["date", "picker", "calendar"],
   "dependencies": {
     "component/calendar": "*",
     "component/popover": "*",
     "component/aurora": "*",
-    "component/event": "*"
+    "component/event": "*",
+    "component/emitter": "*",
+    "samsonjs/strftime": "*",
+    "gorillatron/extend": "*"
   },
   "development": {},
   "license": "MIT",
