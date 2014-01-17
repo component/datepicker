@@ -37,7 +37,7 @@ function Datepicker(el, opts) {
   this.el = el;
   this.options = extend( {}, defaults, opts );
   this.cal = new Calendar;
-  this.cal.el.addClass('datepicker-calendar');
+  this.cal.el.classList.add('datepicker-calendar');
   if (this.options.bindClick) {
     event.bind(el, 'click', this.onclick.bind(this));
   }
