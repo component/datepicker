@@ -23,7 +23,7 @@ function Datepicker(el) {
   if (!(this instanceof Datepicker)) return new Datepicker(el);
   this.el = el;
   this.cal = new Calendar;
-  this.cal.el.addClass('datepicker-calendar');
+  this.cal.addClass('datepicker-calendar');
   event.bind(el, 'click', this.onclick.bind(this));
 }
 
@@ -53,4 +53,3 @@ Datepicker.prototype.onchange = function(date){
   this.popover.remove();
   this.popover = null;
 };
-
