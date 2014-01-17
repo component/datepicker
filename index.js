@@ -15,7 +15,8 @@ var Calendar = require('calendar')
  */
 
 var defaults = {
-    format: '%Y/%m/%d'
+    format: '%Y/%m/%d',
+    bindClick: true
 };
 
 /**
@@ -38,7 +39,9 @@ function Datepicker(el, opts) {
   this.options = extend( {}, defaults, opts );
   this.cal = new Calendar;
   this.cal.el.addClass('datepicker-calendar');
-  event.bind(el, 'click', this.onclick.bind(this));
+  if (this.options.bindClick) {
+    event.bind(el, 'click', this.onclick.bind(this));
+  }
   if (this.options.value) {
     this.onchange(this.options.value);
   }
