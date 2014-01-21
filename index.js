@@ -38,6 +38,38 @@ function Datepicker(el) {
   return this;
 }
 
+/**
+ * Get/set value.
+ *
+ * @param {Date} date (optional)
+ * @api public
+ */
+
+Datepicker.prototype.value = function(date) {
+  if(!date) {
+    if(!this.el.value.match(/\d{1,2}\/\d{1,2}\/\d{4}/))
+      return null;
+
+    var parts = this.el.value.split("/");
+
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+
+  this.cal.select(date);
+  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  this.el.focus();
+
+  this.hide();
+
+  return true;
+}
+
+/**
+ * Show popover
+ *
+ * @api public
+ */
+
 Datepicker.prototype.show = function() {
   var ev = new Event('click');
   document.dispatchEvent(ev);
@@ -52,6 +84,12 @@ Datepicker.prototype.show = function() {
 
   event.bind(this.popover.el[0], 'click', function(e) { e.stopPropagation(); return false; });
 }
+
+/**
+ * Hide popover
+ *
+ * @api public
+ */
 
 Datepicker.prototype.hide = function() {
   if (!this.popover) return;
@@ -101,22 +139,5 @@ Datepicker.prototype.onchange = function(e){
   this.value(date);
 };
 
-Datepicker.prototype.value = function(date) {
-  if(!date) {
-    if(!this.el.value.match(/\d{1,2}\/\d{1,2}\/\d{4}/))
-      return null;
 
-    var parts = this.el.value.split("/");
-
-    return new Date(parts[2], parts[1] - 1, parts[0]);
-  }
-
-  this.cal.select(date);
-  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-  this.el.focus();
-
-  this.hide();
-
-  return true;
-}
 

@@ -10,6 +10,13 @@ A date picker UI component built on component/calendar. Forked from component/da
 $ component install redbadger/datepicker
 ```
 
+## Features
+
+*  takes and returns a value of type `Date`
+*  hide on click outside
+*  manual date change support
+*  keyboard interaction
+
 ## Example
 
 ``` javascript
@@ -21,6 +28,20 @@ picker.value(new Date());
 picker.value() // => currently selected date as a Date instance
 
 ```
+
+## API
+
+### .value(value)
+
+Get or set current value. `value` argument is optional.
+
+### .show()
+
+Show the date picker popover.
+
+### .hide()
+
+Hide the date picker popover.
 
 ## License
 

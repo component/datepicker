@@ -2,7 +2,7 @@
   "name": "datepicker",
   "repo": "redbadger/datepicker",
   "description": "Improved datepicker UI forked from component/datepicker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "keywords": [
     "date",
     "picker",
