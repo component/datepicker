@@ -36,8 +36,12 @@ function Datepicker(el) {
 }
 
 Datepicker.prototype.show = function() {
+  var ev = new Event('click');
+  document.dispatchEvent(ev);
+
   if (this.popover) return;
-  this.cal.once('change', this.onchange.bind(this));
+
+  this.cal.on('change', this.value.bind(this));
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';
   this.popover.show(this.el);
@@ -67,13 +71,7 @@ Datepicker.prototype.onclick = function(e){
  * Handle date changes.
  */
 
-Datepicker.prototype.onchange = function(date){
-  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-
-  this.hide();
-};
-
-Datepicker.prototype.textchange = function(e){
+Datepicker.prototype.onchange = function(e){
   var parts = this.el.value.split("/");
   if(parts.length < 3)
     return this.value(null);

@@ -8,7 +8,7 @@
     <script src="../build/build.js" type="text/javascript"></script>
     <style>
       body {
-        padding: 50px;
+        padding: 200px;
         background-color: #eee;
       }
       input {
@@ -62,16 +62,21 @@
       }
     </style>
 
-    <input id="date" type="text" />
+    <input id="date1" type="text" />
+
+    <input id="date2" type="text" />
 
     <script>
       var Datepicker = require('datepicker');
 
-      var input = document.getElementById("date")
-      var picker = Datepicker(input);
+      var input1 = document.getElementById("date1");
+      var input2 = document.getElementById("date2");
 
-      picker.value(new Date());
-      console.log("Today:", picker.value())
+      var picker1 = Datepicker(input1);
+      var picker2 = Datepicker(input2);
+
+      picker1.value(new Date());
+      console.log("Today:", picker1.value())
     </script>
   </body>
 </html>
