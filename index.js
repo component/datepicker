@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 
-var Calendar = require('calendar')
+var bind = require('bind')
+  , Calendar = require('calendar')
   , Popover = require('popover')
   , event = require('event')
 
@@ -24,7 +25,7 @@ function Datepicker(el) {
   this.el = el;
   this.cal = new Calendar;
   this.cal.addClass('datepicker-calendar');
-  event.bind(el, 'click', this.onclick.bind(this));
+  event.bind(el, 'click', bind(this, this.onclick));
 }
 
 /**
@@ -33,7 +34,7 @@ function Datepicker(el) {
 
 Datepicker.prototype.onclick = function(e){
   if (this.popover) return;
-  this.cal.once('change', this.onchange.bind(this));
+  this.cal.once('change', bind(this, this.onchange));
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';
   this.popover.show(this.el);
