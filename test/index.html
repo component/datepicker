@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <link href="../build/build.css" type="style/css" rel="stylesheet" />
+    <script src="../build/build.js" type="text/javascript"></script>
+    <style>
+      body {
+        padding: 50px;
+      }
+      input {
+        font: 12px Helvetica, Arial;
+      }
+      .pillbox {
+        width: 200px;
+        border: 1px solid #eee;
+        border-top-color: #ddd;
+        padding: 5px;
+        border-radius: 2px;
+      }
+      .pillbox input {
+        padding: 5px;
+        width: 30%;
+        float: left;
+      }
+      .pillbox span {
+        display: block;
+        float: left;
+        margin: 2px;
+        font: 12px Helvetica, Arial;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 5px 8px;
+      }
+      .pillbox span:hover {
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+        background: #fafafa;
+      }
+      .pillbox span a {
+        display: inline-block;
+        font-size: 6px;
+        color: #888;
+        border: 1px solid #eee;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        margin-left: 5px;
+        position: relative;
+        top: -1px;
+      }
+      .pillbox span a:hover {
+        background: #eee;
+      }
+      .pillbox span a:active {
+        background: #ddd;
+      }
+    </style>
+
+    <input id="date" type="text" />
+
+    <script>
+      var Datepicker = require('datepicker');
+
+      var input = document.getElementById("date")
+      var picker = Datepicker(input);
+
+      picker.onclick = function(e) {
+        console.log(e);
+      }
+
+      picker.value(new Date());
+      console.log("Today:", picker.value())
+    </script>
+  </body>
+</html>

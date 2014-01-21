@@ -25,6 +25,7 @@ function Datepicker(el) {
   this.cal = new Calendar;
   this.cal.addClass('datepicker-calendar');
   event.bind(el, 'click', this.onclick.bind(this));
+  event.bind(el, 'change', this.textchange.bind(this))
 }
 
 /**
@@ -44,12 +45,35 @@ Datepicker.prototype.onclick = function(e){
  */
 
 Datepicker.prototype.onchange = function(date){
-  this.el.value = date.getFullYear()
-    + '/'
-    + (date.getMonth() + 1)
-    + '/'
-    + date.getDate();
+  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 
   this.popover.remove();
   this.popover = null;
 };
+
+Datepicker.prototype.textchange = function(e){
+  var parts = this.el.value.split("/");
+  if(parts.length < 3)
+    return this.value(null);
+
+  var date = new Date(parts[2], parts[1] - 1, parts[0]);
+
+  this.value(date);
+};
+
+Datepicker.prototype.value = function(date) {
+  if(!date) {
+    if(!this.el.value.match(/\d{1,2}\/\d{1,2}\/\d{4}/))
+      return null;
+
+    var parts = this.el.value.split("/");
+
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+
+  this.cal.select(date);
+  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+
+  return true;
+}
+

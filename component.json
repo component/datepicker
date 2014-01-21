@@ -1,9 +1,13 @@
 {
   "name": "datepicker",
-  "repo": "component/datepicker",
-  "description": "Datepicker ui component built on component/calendar",
+  "repo": "redbadger/datepicker",
+  "description": "Improved datepicker UI forked from component/datepicker",
   "version": "1.0.0",
-  "keywords": ["date", "picker", "calendar"],
+  "keywords": [
+    "date",
+    "picker",
+    "calendar"
+  ],
   "dependencies": {
     "component/calendar": "*",
     "component/popover": "*",
