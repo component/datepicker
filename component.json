@@ -12,7 +12,9 @@
     "component/calendar": "*",
     "component/popover": "*",
     "component/aurora": "*",
-    "component/event": "*"
+    "component/event": "*",
+    "component/aurora-tip": "0.0.2",
+    "component/tip": "0.2.1"
   },
   "development": {},
   "license": "MIT",
