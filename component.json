@@ -13,6 +13,7 @@
     "component/popover": "*",
     "component/aurora": "*",
     "component/event": "*",
+    "component/events": "*",
     "component/aurora-tip": "0.0.2",
     "component/tip": "0.2.1"
   },

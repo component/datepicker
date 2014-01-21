@@ -70,10 +70,6 @@
       var input = document.getElementById("date")
       var picker = Datepicker(input);
 
-      picker.onclick = function(e) {
-        console.log(e);
-      }
-
       picker.value(new Date());
       console.log("Today:", picker.value())
     </script>

@@ -5,6 +5,7 @@
 var Calendar = require('calendar')
   , Popover = require('popover')
   , event = require('event')
+  , events = require('events')
 
 /**
  * Expose `Datepicker`.
@@ -24,8 +25,31 @@ function Datepicker(el) {
   this.el = el;
   this.cal = new Calendar;
   this.cal.addClass('datepicker-calendar');
-  event.bind(el, 'click', this.onclick.bind(this));
-  event.bind(el, 'change', this.textchange.bind(this))
+
+  this.events = events(this.el, this);
+  this.events.bind('click', 'onclick');
+  this.events.bind('change', 'onchange');
+
+  event.bind(document, 'click', this.hide.bind(this));
+
+  return this;
+}
+
+Datepicker.prototype.show = function() {
+  if (this.popover) return;
+  this.cal.once('change', this.onchange.bind(this));
+  this.popover = new Popover(this.cal.el);
+  this.popover.classname = 'datepicker-popover popover';
+  this.popover.show(this.el);
+
+  event.bind(this.popover.el[0], 'click', function(e) { e.stopPropagation(); return false; });
+}
+
+Datepicker.prototype.hide = function() {
+  if (!this.popover) return;
+
+  this.popover.remove();
+  this.popover = null;
 }
 
 /**
@@ -33,11 +57,10 @@ function Datepicker(el) {
  */
 
 Datepicker.prototype.onclick = function(e){
-  if (this.popover) return;
-  this.cal.once('change', this.onchange.bind(this));
-  this.popover = new Popover(this.cal.el);
-  this.popover.classname = 'datepicker-popover popover';
-  this.popover.show(this.el);
+  e.stopPropagation();
+
+  this.show();
+  return false;
 };
 
 /**
@@ -47,8 +70,7 @@ Datepicker.prototype.onclick = function(e){
 Datepicker.prototype.onchange = function(date){
   this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 
-  this.popover.remove();
-  this.popover = null;
+  this.hide();
 };
 
 Datepicker.prototype.textchange = function(e){
