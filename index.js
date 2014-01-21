@@ -6,6 +6,8 @@ var Calendar = require('calendar')
   , Popover = require('popover')
   , event = require('event')
   , events = require('events')
+  , keyname = require('keyname')
+
 
 /**
  * Expose `Datepicker`.
@@ -29,6 +31,7 @@ function Datepicker(el) {
   this.events = events(this.el, this);
   this.events.bind('click', 'onclick');
   this.events.bind('change', 'onchange');
+  this.events.bind('keydown', 'onkeydown');
 
   event.bind(document, 'click', this.hide.bind(this));
 
@@ -42,6 +45,7 @@ Datepicker.prototype.show = function() {
   if (this.popover) return;
 
   this.cal.on('change', this.value.bind(this));
+
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';
   this.popover.show(this.el);
@@ -65,6 +69,22 @@ Datepicker.prototype.onclick = function(e){
 
   this.show();
   return false;
+};
+
+Datepicker.prototype.onkeydown = function(e){
+  switch (keyname(e.which)) {
+    case 'enter':
+      e.preventDefault();
+      this.onchange(e);
+
+      break;
+    case 'esc':
+      this.hide();
+
+      break;
+    default:
+      console.log(keyname(e.which));
+  }
 };
 
 /**
@@ -93,6 +113,9 @@ Datepicker.prototype.value = function(date) {
 
   this.cal.select(date);
   this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  this.el.focus();
+
+  this.hide();
 
   return true;
 }
