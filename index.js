@@ -7,6 +7,7 @@ var Calendar = require('calendar')
   , event = require('event')
   , events = require('events')
   , keyname = require('keyname')
+  , Emitter = require('emitter');
 
 
 /**
@@ -33,10 +34,18 @@ function Datepicker(el) {
   this.events.bind('change', 'onchange');
   this.events.bind('keydown', 'onkeydown');
 
+  this.cal.on('change', this.value.bind(this));
+
   event.bind(document, 'click', this.hide.bind(this));
 
   return this;
 }
+
+/**
+ * Mixin emitter.
+ */
+
+Emitter(Datepicker.prototype);
 
 /**
  * Get/set value.
@@ -60,6 +69,7 @@ Datepicker.prototype.value = function(date) {
   this.el.focus();
 
   this.hide();
+  this.emit('change', date);
 
   return true;
 }
@@ -75,8 +85,6 @@ Datepicker.prototype.show = function() {
   document.dispatchEvent(ev);
 
   if (this.popover) return;
-
-  this.cal.on('change', this.value.bind(this));
 
   this.popover = new Popover(this.cal.el);
   this.popover.classname = 'datepicker-popover popover';

@@ -77,6 +77,14 @@
 
       picker1.value(new Date());
       console.log("Today:", picker1.value())
+
+      picker1.on("change", function(date) {
+        console.log("Picker 1 change detected, new date: " + date);
+      });
+
+      picker2.on("change", function(date) {
+        console.log("Picker 2 change detected, new date: " + date);
+      });
     </script>
   </body>
 </html>
