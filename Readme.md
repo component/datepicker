@@ -12,22 +12,33 @@ $ component install redbadger/datepicker
 
 ## Features
 
-*  takes and returns a value of type `Date`
-*  hide on click outside
-*  manual date change support
-*  keyboard interaction
+*  Takes and returns a value of type `Date`
+*  Hide on click outside
+*  Manual date change support
+*  Keyboard interaction
+*  Fully configurable date format with custom divider symbols
 
 ## Example
 
 ``` javascript
 var Datepicker = require('datepicker');
 
-var picker = Datepicker(document.getElementById('date'))
+var picker = Datepicker(document.getElementById('date'), "DD/MM/YYYY")
 
 picker.value(new Date());
 picker.value() // => currently selected date as a Date instance
 
 ```
+
+## Custom date format
+
+You can specify the format of the date you expect it to produce. Format is a string, which can be something like this:
+
+*  "DD/MM/YYYY"
+*  "YYYY-MM-DD"
+*  "mm.dd.yy"
+
+Order of month, day and year will be recognized by the component, divider symbol will also be honored. You can ask for 2 digit year or 4 with "YY" or "YYYY" respectably.
 
 ## API
 

@@ -20,11 +20,12 @@ module.exports = Datepicker;
  * Initialize a new date picker with the given input `el`.
  *
  * @param {Element} el
+ * @format String "DD/MM/YYYY", "YYYY/MM/DD", "MM/DD/YYYY"
  * @api public
  */
 
-function Datepicker(el) {
-  if (!(this instanceof Datepicker)) return new Datepicker(el);
+function Datepicker(el, format) {
+  if (!(this instanceof Datepicker)) return new Datepicker(el, format);
   this.el = el;
   this.cal = new Calendar;
   this.cal.addClass('datepicker-calendar');
@@ -36,6 +37,14 @@ function Datepicker(el) {
 
   this.cal.on('change', this.value.bind(this));
 
+  if (typeof(format) === 'undefined') {
+    this.format = "DD/MM/YYYY";
+  } else {
+    this.format = format;
+  }
+
+  this.initDateFormat(this.format);
+
   event.bind(document, 'click', this.hide.bind(this));
 
   return this;
@@ -46,6 +55,63 @@ function Datepicker(el) {
  */
 
 Emitter(Datepicker.prototype);
+
+/**
+ * Parsing the format string
+ */
+
+Datepicker.prototype.initDateFormat = function(format) {
+  var reDay = /DD/i
+  , reMonth = /MM/i
+  , reYear = /Y/gi
+  , reDivider = /[^a-zA-Z0-9]/
+  , dayPos = 0
+  , monthPos = 0
+  , yearPos = 0
+  , yearCount = 0
+  , divider = ""
+  , dateArray = [];
+
+  this.dayPos = format.search(reDay);
+  this.monthPos = format.search(reMonth);
+  this.yearPos = format.search(reYear);
+  this.yearCount = format.match(reYear).length;
+  this.divider = format.match(reDivider)[0];
+}
+
+Datepicker.prototype.processDate = function(date) {
+  var dateArray = []
+  , year
+  , finalString = ""
+  , divider = this.divider;
+
+  if (this.yearCount == 2) {
+    year = String(date.getFullYear()).slice(2, 4);
+  } else {
+    year = date.getFullYear();
+  }
+
+  dateArray = [
+    { value: date.getDate(), position: this.dayPos },
+    { value: (date.getMonth() + 1), position: this.monthPos },
+    { value: year, position: this.yearPos }
+  ];
+
+  dateArray.sort(function(a, b) {
+    if (a.position < b.position)
+      return -1;
+    if (a.position > b.position)
+      return 1;
+    return 0;
+  });
+
+  dateArray.forEach(function(entry){
+    finalString += entry.value + divider;
+  });
+
+  // Slicing away the last applied divider
+  return finalString.slice(0, -1);
+}
 
 /**
  * Get/set value.
@@ -65,7 +131,8 @@ Datepicker.prototype.value = function(date) {
   }
 
   this.cal.select(date);
-  this.el.value = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  this.el.value = this.processDate(date);
+
   this.el.focus();
 
   this.hide();

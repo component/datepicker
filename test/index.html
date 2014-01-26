@@ -72,8 +72,8 @@
       var input1 = document.getElementById("date1");
       var input2 = document.getElementById("date2");
 
-      var picker1 = Datepicker(input1);
-      var picker2 = Datepicker(input2);
+      var picker1 = Datepicker(input1, "DD/MM/YYYY");
+      var picker2 = Datepicker(input2, "YY-MM-DD");
 
       picker1.value(new Date());
       console.log("Today:", picker1.value())
