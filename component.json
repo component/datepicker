@@ -1,14 +1,23 @@
 {
   "name": "datepicker",
-  "repo": "component/datepicker",
-  "description": "Datepicker ui component built on component/calendar",
-  "version": "1.0.0",
-  "keywords": ["date", "picker", "calendar"],
+  "repo": "redbadger/datepicker",
+  "description": "Improved datepicker UI forked from component/datepicker",
+  "version": "0.1.0",
+  "keywords": [
+    "date",
+    "picker",
+    "calendar"
+  ],
   "dependencies": {
     "component/calendar": "*",
     "component/popover": "*",
     "component/aurora": "*",
-    "component/event": "*"
+    "component/event": "*",
+    "component/events": "*",
+    "component/keyname": "*",
+    "component/aurora-tip": "0.0.2",
+    "component/tip": "0.2.1",
+    "component/emitter": "*"
   },
   "development": {},
   "license": "MIT",

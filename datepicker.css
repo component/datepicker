@@ -9,4 +9,9 @@
 
 .datepicker-popover .tip-inner {
   border: none;
+  background-color: transparent;
+}
+
+.datepicker-popover .calendar-table {
+  background-color: #fff;
 }
