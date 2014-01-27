@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "keywords": ["date", "picker", "calendar"],
   "dependencies": {
+    "component/bind": "*",
     "component/calendar": "*",
     "component/popover": "*",
     "component/aurora": "*",
