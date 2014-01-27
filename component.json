@@ -6,8 +6,8 @@
   "keywords": ["date", "picker", "calendar"],
   "dependencies": {
     "component/bind": "*",
-    "component/calendar": "ie8_compat",
-    "component/popover": "ie8_compat",
+    "component/calendar": "*",
+    "component/popover": "*",
     "component/aurora": "*",
     "component/event": "*"
   },
