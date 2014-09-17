@@ -8,7 +8,7 @@
     "component/bind": "1.0.0",
     "component/calendar": "0.1.0",
     "component/popover": "1.1.0",
-    "component/aurora": "0.0.1",
+    "component/aurora": "*",
     "component/event": "0.1.4"
   },
   "development": {},
